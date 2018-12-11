@@ -1,0 +1,44 @@
+<!-- templates/events.html -->
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+      <h2>Events</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+                <th scope="col">Event Name</th>
+                <th scope="col">Event creator</th>
+                <th scope="col">Username</th>
+                <th scope="col">Region</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for event in events %}
+                <tr>
+                    <td class="text-left">{{ event.event_name }}</td>
+                    <td class="text-left">{{ event.name }}</td>
+                    <td class="text-left">{{ event.author }}</td>
+                    <td class="text-left">{{ event.region }}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    {% else %}
+        <p>You are not logged in</p>
+     <a href="{% url 'login' %}">login</a>
+    {% endif %}
+{#    {% for event in events_names %}#}
+{#        <p>tests</p>#}
+{#            <tr>#}
+{#              <td>#}
+{#                {{ event.event_name }}#}
+{#                <small class="text-muted d-block">{{ event.name }}</small>#}
+{#              </td>#}
+{#              <td class="align-middle">0</td>#}
+{#              <td class="align-middle">0</td>#}
+{#              <td></td>#}
+{#            </tr>#}
+{#    {% endfor %}#}
+{% endblock %}
